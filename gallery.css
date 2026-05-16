@@ -1,0 +1,12 @@
+body {
+    background-color: blueviolet;
+}
+
+img {
+object-fit: contain;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+}

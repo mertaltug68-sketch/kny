@@ -1,9 +1,30 @@
-#main {
-    height: 300px;
-    width: 1000px;
+ #main {
+    display: flex;
+    height: 50vh;
+    width: 100vh;
+    background-color: red;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+ }
+
+body, html {
+    background-color: brown;
+    overflow: hidden;
+    margin: 0;
+    height: 100%;
 }
 
 body {
-    background-color:red ;
+    display: flex;
+    align-items: center;    
+    justify-content: center;
+}
 
+td img {
+object-fit: cover;
+}
+
+table {
+    text-align: center;
 }
