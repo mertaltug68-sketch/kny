@@ -2,7 +2,7 @@ const cells = document.querySelectorAll(".cell");
 const status = document.querySelector(".status");
 const restart = document.querySelector(".restart");
 
-var player = "X";
+var player = "Human";
 var gameOver = false;
 
 var board = ["", "", "",
@@ -26,19 +26,25 @@ for (let i = 0; i < 9; i++) {
             return;
         }
 
-        board[i] = player;
-        cells[i].textContent = player;
+        if (player == "Human") {
+            board[i] = "X";
+            cells[i].textContent = "X";
+        }
+        else {
+            board[i] = "O";
+            cells[i].textContent = "O";   
+        }
 
         checkWinner();
 
         if (!gameOver) {
-            if (player=="X") {
-                player = "O";
+            if (player=="Human") {
+                player = "Demon";
             } else {
-                player = "X";
+                player = "Human";
             }
 
-            status.textContent = "Player " + player + "'s Turn";
+            status.textContent = player + "'s Turn";
         }
 
     });
@@ -55,11 +61,15 @@ function checkWinner() {
             board[a] == board[b] &&
             board[b] == board[c]
         ) {
-            if (player == "X") {
+            if (player == "Human") {
                 status.textContent = "Humans Win!";
+                document.body.classList.remove("demons");
+                document.body.classList.add("humans");
 
             } else {
                 status.textContent = "Demons Win!";
+                document.body.classList.remove("humans");
+                document.body.classList.add("demons");  
             }
             gameOver = true;
             return;
@@ -81,10 +91,10 @@ function checkWinner() {
 }
 
 restart.addEventListener("click", function () {
-    player = "X";
+    player = "Human";
     gameOver = false;
 
-    status.textContent = "Player X's Turn";
+    status.textContent = "Human's Turn";
 
     for (let i = 0; i < board.length; i++) {
         board[i] = "";
