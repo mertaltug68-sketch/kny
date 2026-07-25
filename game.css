@@ -16,12 +16,20 @@ body {
     min-height: 100vh;
 }
 
-body.humans {
-    background-color: rgb(245, 122, 142);
+body.normal {
+    background: rgb(200, 2, 235);
 }
 
-body.demons {
-    background-color: blueviolet;
+body.corrupt1 {
+    background: rgb(180, 0, 0);
+}
+
+body.corrupt2 {
+    background: black;
+}
+
+body.humans {
+    background: rgb(245, 122, 142);
 }
 
 ul {

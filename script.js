@@ -20,6 +20,29 @@ const wins = [
     [2,5,8]
 ];
 
+let corruption = 0;
+
+function updateCorruption() {
+    document.body.classList.remove(
+        "normal",
+        "humans",
+        "corrupt1",
+        "corrupt2"
+    );
+
+    if (corruption == 0) {
+        document.body.classList.add("normal");
+    }
+    else if (corruption == 1) {
+        document.body.classList.add("corrupt1");
+    }
+    else {
+        document.body.classList.add("corrupt2");
+    }
+}
+
+updateCorruption();
+
 for (let i = 0; i < 9; i++) {
     cells[i].addEventListener("click", function () {
         if (gameOver || board[i] != "") {
@@ -63,13 +86,33 @@ function checkWinner() {
         ) {
             if (player == "Human") {
                 status.textContent = "Humans Win!";
-                document.body.classList.remove("demons");
+
+                if (corruption > 0) {
+                    corruption--;
+                }
+
+                document.body.classList.remove(
+                    "normal",
+                    "corrupt1",
+                    "corrupt2"
+                );
+
                 document.body.classList.add("humans");
 
             } else {
                 status.textContent = "Demons Win!";
-                document.body.classList.remove("humans");
-                document.body.classList.add("demons");  
+
+                corruption++;
+
+                updateCorruption();
+
+                if (corruption >= 3) {
+                    status.textContent = "The demons have consumed you...";
+
+                    setTimeout(() => {
+                        window.location.replace("about:blank");
+                    }, 5000);
+                }
             }
             gameOver = true;
             return;
